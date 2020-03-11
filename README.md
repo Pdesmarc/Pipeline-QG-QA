@@ -20,7 +20,7 @@ Install the repo as a package:
 ```bash
 mkdir ~/code; cd ~/code
 git clone https://github.com/Pdesmarc/Pipeline-QG-QA.git
-cd ~/code/pipeline-GG-QA/src
+cd ~/code/Pipeline-QG-QA/src
 pip install --user --editable .
 ```
 
@@ -30,8 +30,8 @@ Please download a fine-tuned checkpoint of UniLM QG from [here](https://drive.go
 
 Then (if you download the file in ~/Download)
 ```bash
-mkdir ~/code/pipeline-GG-QA/MODEL/
-mv ~/Download/qg_model.bin ~/code/pipeline-GG-QA/MODEL/
+mkdir ~/code/Pipeline-QG-QA//MODEL/
+mv ~/Download/qg_model.bin ~/code/Pipeline-QG-QA//MODEL/
 ```
 
 ### spaCY
@@ -47,8 +47,8 @@ pip install transformers
 
 ## How to run it 
 ```bash
-cd ~/code/pipeline-QG-QA
+cd ~/code/Pipeline-QG-QA
 ./first_scenario.sh argument1
-# argument1 = /PATH/TO/YOUR/FILE/NAME_OF_THE_FILE.txt (example : ./scenario.sh ~/code/pipeline-GG-QA/example/texte_brut.txt )
+# argument1 = /PATH/TO/YOUR/FILE/NAME_OF_THE_FILE.txt (example : ./scenario.sh ~/code/PipelineQG-QA/example/texte_brut.txt )
 ```
 The output will be a file named : resultat_final_scenario1.txt 
