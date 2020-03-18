@@ -5,7 +5,14 @@ Repository of a pipeline between Question generation and Question answering usin
 
 ### Linux
 
-The recommended way to run the code is using Linux (ubuntu 18.04) 
+The recommended way to run the code is using Linux (ubuntu 18.04)
+
+### Requirements 
+
+- Python version > 3.5 installed
+- conda installed
+
+### To do
 
 In a shell :
 ```bash
@@ -15,6 +22,8 @@ apt-get install -y vim wget ssh
 
 pip install --user tensorboardX six numpy tqdm path.py pandas scikit-learn lmdb pyarrow py-lz4framed methodtools py-rouge pyrouge nltk
 python -c "import nltk; nltk.download('punkt')"
+conda install pytorch torchvision cpuonly -c pytorch
+
 ```
 Install the repo as a package:
 ```bash
@@ -30,8 +39,8 @@ Please download a fine-tuned checkpoint of UniLM QG from [here](https://drive.go
 
 Then (if you download the file in ~/Download)
 ```bash
-mkdir ~/code/Pipeline-QG-QA//MODEL/
-mv ~/Download/qg_model.bin ~/code/Pipeline-QG-QA//MODEL/
+mkdir ~/code/Pipeline-QG-QA/MODEL/
+mv ~/Download/qg_model.bin ~/code/Pipeline-QG-QA/MODEL/
 ```
 
 ### spaCY
@@ -46,9 +55,18 @@ pip install transformers
 ```
 
 ## How to run it 
+
+:warning: Your input file should be a *.txt* file where each new line represents a new paragraph. Each paragraph/line must be composed less  than 512 tokens. See bert_tokenizer requirement for more infomation. You can find an example file in the *example* folder named *texte_brut.txt*
+
 ```bash
 cd ~/code/Pipeline-QG-QA
 ./first_scenario.sh argument1
-# argument1 = /PATH/TO/YOUR/FILE/NAME_OF_THE_FILE.txt (example : ./scenario.sh ~/code/PipelineQG-QA/example/texte_brut.txt )
+# argument1 = /PATH/TO/YOUR/FILE/NAME_OF_THE_FILE.txt 
+# example : ./scenario.sh ~/code/Pipeline-QG-QA/example/texte_brut.txt 
 ```
-The output will be a file named : resultat_final_scenario1.txt 
+The output will be a file named : __resultat_final_scenario1.txt__. 
+
+You also can find intermediate files at : *script/tmp/* . Each file represents a step between two scripts : 
+
+- result_Text_Answer.txt : intermediate file between spaCy script and Unilm script
+- questions_generated.txt : intermediate file between Unilm script and Bert script
